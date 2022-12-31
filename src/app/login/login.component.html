@@ -1,0 +1,15 @@
+<div class="login-page">
+    <h2>Login</h2>
+    <form #loginform="ngForm" (ngSubmit)="onSubmit(loginform)">
+        <mat-form-field appearance="fill">
+            <mat-label>email</mat-label>
+            <input placeholder="test" matInput type="email" name="email" required ngModel email>
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>Password</mat-label>
+            <input placeholder="test" matInput type="password" name="password" required ngModel password>
+        </mat-form-field>
+        <button mat-raised-button [disabled]="!loginform.valid">Invia</button>
+    </form><br>
+    <h3><a routerLink="/register">...oppure registrati</a></h3>
+</div>

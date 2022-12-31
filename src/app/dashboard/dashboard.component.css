@@ -1,0 +1,41 @@
+.example-container {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #eee;
+}
+.mat-mdc-list-item {
+  cursor: pointer !important;
+}
+.active {
+  background-color: white;
+  border-radius: 5px;
+}
+.example-spacer {
+  flex: 1 1 auto;
+}
+.list-horizontal {
+  display: flex;
+}
+.mdc-list-item.mdc-list-item--with-one-line {
+  width: auto;
+}
+.white {
+  color: white !important;
+}
+
+.corpo {
+  padding: 2rem;
+  min-height: calc(100vh - 64px - 52px);
+  box-sizing: border-box;
+}
+footer {
+  background-color: #3f51b5;
+  padding: 1rem;
+  box-sizing: border-box;
+}
+footer p {
+  margin: 0;
+}

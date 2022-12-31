@@ -1,0 +1,8 @@
+<mat-tab-group>
+    <mat-tab [label]="persona.firstName" *ngFor="let persona of data, index as i" class="elemento">
+        Persona numero: {{i}}<br>
+        Nome: {{persona.firstName}}<br>
+        Cognome: {{persona.lastName}}<br>
+        Età: {{persona.age}}<br>
+    </mat-tab>
+</mat-tab-group>

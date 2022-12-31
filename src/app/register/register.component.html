@@ -1,0 +1,101 @@
+<div class="register-page">
+    <h2>Registrati</h2>
+    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+        <mat-stepper [linear]="true" orientation="vertical">
+            <mat-step>
+                <ng-template matStepLabel>Inserisci email e password</ng-template>
+
+                <div class="flex">
+                    <div>
+                        <mat-form-field appearance="fill">
+                            <mat-label>Email</mat-label>
+                            <input placeholder="test" matInput type="email" name="email" formControlName="email">
+                        </mat-form-field>
+
+                        <p style="color:red;"
+                            *ngIf="!registerForm.get('email')!.valid && registerForm.get('email')!.touched">
+                            Inserisci una email valida
+                        </p>
+                    </div>
+
+                    <div>
+                        <mat-form-field appearance="fill">
+                            <mat-label>Password</mat-label>
+                            <input placeholder="test" matInput type="password" name="password"
+                                formControlName="password">
+                        </mat-form-field>
+
+                        <p style="color:red;"
+                            *ngIf="!registerForm.get('password')!.valid && registerForm.get('password')!.touched">
+                            Inserisci una password di almeno 4 caratteri
+                        </p>
+                    </div>
+                </div>
+                <button mat-button matStepperNext
+                    [disabled]="!registerForm.get('email')!.valid || !registerForm.get('password')!.valid">Avanti</button>
+
+            </mat-step>
+            <mat-step>
+                <ng-template matStepLabel>Inserisci Regione, provincia e comune di residenza</ng-template>
+
+                <div class="flex">
+
+                    <mat-form-field class="example-full-width" appearance="fill">
+                        <mat-label>Regione di Residenza</mat-label>
+                        <input type="text" matInput placeholder="Digita una regione" aria-label="Regioni" matInput
+                            formControlName="autocompleteRegioni" [matAutocomplete]="autoRegioni">
+                        <mat-autocomplete autoActiveFirstOption #autoRegioni="matAutocomplete"
+                            (optionSelected)="onSelectionRegioni($event)">
+                            <mat-option *ngFor="let regione of regioniFiltrate | async" [value]="regione.nome">
+                                {{regione.nome}}
+                            </mat-option>
+                        </mat-autocomplete>
+                    </mat-form-field>
+
+                    <mat-form-field class="example-full-width" appearance="fill">
+                        <mat-label>Provincia di Residenza</mat-label>
+                        <input type="text" matInput placeholder="Digita una provincia" aria-label="Province" matInput
+                            formControlName="autocompleteProvince" [matAutocomplete]="autoProvince">
+                        <mat-autocomplete autoActiveFirstOption #autoProvince="matAutocomplete"
+                            (optionSelected)="onSelectionProvince($event)">
+                            <mat-option *ngFor="let provincia of province" [value]="provincia.nome">
+                                {{provincia.nome}}
+                            </mat-option>
+                        </mat-autocomplete>
+                    </mat-form-field>
+
+                    <mat-form-field class="example-full-width" appearance="fill">
+                        <mat-label>Comune di Residenza</mat-label>
+                        <input type="text" matInput placeholder="Digita un comune" aria-label="Comuni" matInput
+                            formControlName="autocompleteComuni" [matAutocomplete]="autoComuni">
+                        <mat-autocomplete autoActiveFirstOption #autoComuni="matAutocomplete">
+                            <mat-option *ngFor="let comune of comuni" [value]="comune.nome">
+                                {{comune.nome}}
+                            </mat-option>
+                        </mat-autocomplete>
+                    </mat-form-field>
+
+                </div>
+                <br>
+                <button mat-button matStepperPrevious>Indietro</button>
+                <button mat-button matStepperNext [disabled]="!registerForm.valid">Avanti</button>
+            </mat-step>
+            <mat-step>
+                <ng-template matStepLabel>Completa</ng-template>
+                <h3>Conferma Dati</h3>
+                <p>Email: {{this.registerForm.value.email}}</p>
+                <p>Password: {{this.registerForm.value.password}}</p>
+                <p>Regione: {{this.registerForm.value.autocompleteRegioni}}</p>
+                <p>Provincia: {{this.registerForm.value.autocompleteProvince}}</p>
+                <p>Comune: {{this.registerForm.value.autocompleteComuni}}</p>
+                <br>
+                <div class="flex">
+                    <button mat-button matStepperPrevious>Indietro</button>
+                    <button mat-raised-button type="submit" [disabled]="!registerForm.valid">Registrati</button>
+                </div>
+            </mat-step>
+        </mat-stepper>
+    </form>
+    <br>
+    <h3><a routerLink="/login">...oppure Entra</a></h3>
+</div>
