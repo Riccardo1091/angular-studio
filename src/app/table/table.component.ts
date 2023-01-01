@@ -26,5 +26,8 @@ export class TableComponent {
   ngOnInit() {
     this.serviceElement.array.subscribe(array => this.dataSource = array);
   }
+  ngOnDestroy(): void {
+    this.serviceElement.array.unsubscribe()
+  }
 }
 
