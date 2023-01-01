@@ -3,12 +3,11 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ElementsService } from '../elements.service';
 
 @Component({
-  selector: 'app-add-item',
-  templateUrl: './add-item.component.html',
-  styleUrls: ['./add-item.component.css']
+  selector: 'app-edit-item',
+  templateUrl: './edit-item.component.html',
+  styleUrls: ['./edit-item.component.css']
 })
-
-export class AddItemComponent {
+export class EditItemComponent {
   form!: FormGroup
 
   constructor(private formBuilder: FormBuilder, private serviceElement: ElementsService) {

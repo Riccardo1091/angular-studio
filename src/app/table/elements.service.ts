@@ -34,7 +34,9 @@ export class ElementsService {
 
   addItem(valore: PeriodicElement) {
     this.array.next([...this.array.value, valore]);
-    console.log(this.array)
+  }
+  removeItem(position: number) {
+    this.array.next(this.array.value.filter(a => a.position !== position));
   }
 
 }

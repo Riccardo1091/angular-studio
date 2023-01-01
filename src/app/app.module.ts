@@ -29,6 +29,7 @@ import { TableComponent } from './table/table.component';
 import { AppRoutingModule } from './app-routing.module';
 import { RegisterComponent } from './register/register.component';
 import { AddItemComponent } from './table/add-item/add-item.component';
+import { EditItemComponent } from './table/edit-item/edit-item.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { AddItemComponent } from './table/add-item/add-item.component';
     CardsComponent,
     TableComponent,
     RegisterComponent,
-    AddItemComponent
+    AddItemComponent,
+    EditItemComponent
   ],
   imports: [
     BrowserModule,
