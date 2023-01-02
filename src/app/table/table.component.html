@@ -27,7 +27,7 @@
     <ng-container matColumnDef="actions">
         <th mat-header-cell *matHeaderCellDef> Actions </th>
         <td mat-cell *matCellDef="let element; let i = index">
-            <button mat-raised-button (click)="openDialogEdit('300ms', '300ms')" class="remove table-button">
+            <button mat-raised-button (click)="openDialogEdit('300ms', '300ms', element)" class="edit table-button">
                 Modifica</button>
             <button mat-raised-button (click)="removeData(element.position)" class="remove table-button">
                 Rimuovi</button>

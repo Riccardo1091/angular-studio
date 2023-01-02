@@ -24,11 +24,17 @@ export class TableComponent {
     })
   }
 
-  openDialogEdit(enterAnimationDuration: string, exitAnimationDuration: string): void {
+  openDialogEdit(enterAnimationDuration: string, exitAnimationDuration: string, element: PeriodicElement): void {
     this.dialog.open(EditItemComponent, {
       width: 'auto',
       enterAnimationDuration,
       exitAnimationDuration,
+      data: {
+        position: element.position,
+        name: element.name,
+        weight: element.weight,
+        symbol: element.symbol
+      }
     })
   }
 
@@ -36,15 +42,12 @@ export class TableComponent {
     this.serviceElement.removeItem(position)
   }
 
-  editData(index: number) {
-
-  }
-
   ngOnInit() {
     this.serviceElement.array.subscribe(array => this.dataSource = array);
   }
-  ngOnDestroy(): void {
-    this.serviceElement.array.unsubscribe()
-  }
+  /*DA CONTROLLARE*/
+  // ngOnDestroy(): void {
+  //   this.serviceElement.array.unsubscribe()
+  // }
 }
 

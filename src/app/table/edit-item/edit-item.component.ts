@@ -1,6 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, Inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ElementsService } from '../elements.service';
+import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { PeriodicElement } from '../elements.service';
 
 @Component({
   selector: 'app-edit-item',
@@ -8,20 +10,19 @@ import { ElementsService } from '../elements.service';
   styleUrls: ['./edit-item.component.css']
 })
 export class EditItemComponent {
-  form!: FormGroup
+  form: FormGroup
 
-  constructor(private formBuilder: FormBuilder, private serviceElement: ElementsService) {
+  constructor(@Inject(MAT_DIALOG_DATA) public element: PeriodicElement, private formBuilder: FormBuilder, private serviceElement: ElementsService) {
     this.form = this.formBuilder.group({
-      position: ['', Validators.required],
-      name: ['', Validators.required],
-      weight: ['', Validators.required],
-      symbol: ['', Validators.required]
+      position: [this.element.position, Validators.required],
+      name: [this.element.name, Validators.required],
+      weight: [this.element.weight, Validators.required],
+      symbol: [this.element.symbol, Validators.required]
     })
   }
 
   onSubmit() {
-    this.serviceElement.addItem(this.form.value)
-    this.form.reset()
+    this.serviceElement.editItem(this.element, this.form.value)
   }
 
 }

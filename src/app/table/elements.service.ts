@@ -35,6 +35,13 @@ export class ElementsService {
   addItem(valore: PeriodicElement) {
     this.array.next([...this.array.value, valore]);
   }
+
+  editItem(oggettoDaAggiornare: PeriodicElement, oggettoAggiornato: PeriodicElement) {
+    let oggettoDaAggiornareIndice = this.array.value.indexOf(this.array.value.find(oggetto => oggetto.position == oggettoDaAggiornare.position)!)
+    const updated = this.array.value.splice(oggettoDaAggiornareIndice, 1, oggettoAggiornato)
+    this.array.next([...this.array.value])
+  }
+
   removeItem(position: number) {
     this.array.next(this.array.value.filter(a => a.position !== position));
   }
