@@ -1,14 +1,15 @@
+<button mat-raised-button (click)="openDialog('300ms', '300ms')">Aggiungi Card</button>
 <div class="cards">
-    <mat-card *ngFor="let cane of cani" class="example-card">
+    <mat-card *ngFor="let cane of dataSource" class="example-card">
         <mat-card-header>
             <div mat-card-avatar class="example-header-image"></div>
             <mat-card-title>{{cane.name}}</mat-card-title>
             <mat-card-subtitle>{{cane.subtitle}}</mat-card-subtitle>
         </mat-card-header>
-        <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
+        <img mat-card-image [src]="cane.url" alt="Photo of a Shiba Inu">
         <mat-card-content>
             <p>
-                {{cane.desc}}
+                {{cane.description}}
             </p>
         </mat-card-content>
         <mat-card-actions>

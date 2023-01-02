@@ -30,6 +30,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { RegisterComponent } from './register/register.component';
 import { AddItemComponent } from './table/add-item/add-item.component';
 import { EditItemComponent } from './table/edit-item/edit-item.component';
+import { AddCardComponent } from './cards/add-card/add-card.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,8 @@ import { EditItemComponent } from './table/edit-item/edit-item.component';
     TableComponent,
     RegisterComponent,
     AddItemComponent,
-    EditItemComponent
+    EditItemComponent,
+    AddCardComponent
   ],
   imports: [
     BrowserModule,
