@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
 
 
 export interface Cane {
@@ -9,13 +10,13 @@ export interface Cane {
   description: string
 }
 
-export let cardsUrl: string[] = [
-  'https://i.picsum.photos/id/420/300/200.jpg?hmac=cPuKqwwdRbEWUFib42oVBguxkg_eSnevKAu1qXARZ2g',
-  'https://i.picsum.photos/id/87/300/200.jpg?hmac=0GvfEl8jImRqAL7aoLaiqtztQYhREUEF4As058jWmFA',
-  'https://i.picsum.photos/id/108/300/200.jpg?hmac=MlabGxfxtDtB-KQ3LOCPKm2RZY7B6Xuaj8ERJzQTgoE',
-  'https://i.picsum.photos/id/185/300/200.jpg?hmac=NRgVq0nYX5DKDbKu2HwUPzwfwnkCObUj-JZdr_1CFmU',
-  'https://i.picsum.photos/id/573/300/200.jpg?hmac=xh_OGIi3Lssumlx1x8W_PscpGn95vDFKqe-XhEW0a-g',
-]
+// export let cardsUrl: string[] = [
+//   'https://i.picsum.photos/id/420/300/200.jpg?hmac=cPuKqwwdRbEWUFib42oVBguxkg_eSnevKAu1qXARZ2g',
+//   'https://i.picsum.photos/id/87/300/200.jpg?hmac=0GvfEl8jImRqAL7aoLaiqtztQYhREUEF4As058jWmFA',
+//   'https://i.picsum.photos/id/108/300/200.jpg?hmac=MlabGxfxtDtB-KQ3LOCPKm2RZY7B6Xuaj8ERJzQTgoE',
+//   'https://i.picsum.photos/id/185/300/200.jpg?hmac=NRgVq0nYX5DKDbKu2HwUPzwfwnkCObUj-JZdr_1CFmU',
+//   'https://i.picsum.photos/id/573/300/200.jpg?hmac=xh_OGIi3Lssumlx1x8W_PscpGn95vDFKqe-XhEW0a-g',
+// ]
 
 export let cani: Cane[] = [
   { name: "Gino", subtitle: "Razza1", url: 'https://picsum.photos/id/237/300/200', description: "Lorem ipsum dolor sit amet sit amet, consectetur adipiscing elit" },
@@ -34,7 +35,11 @@ export class CardsService {
 
   public array: BehaviorSubject<Cane[]> = new BehaviorSubject(cani)
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
+
+  fetchImgCane() {
+    return this.http.get<string>(`http://localhost:9000/randomImg`)
+  }
 
   addCane(cane: Cane) {
     this.array.next([...this.array.value, cane])

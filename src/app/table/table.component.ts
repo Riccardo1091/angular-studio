@@ -1,8 +1,9 @@
-import { Component, SimpleChanges } from '@angular/core';
+import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { AddItemComponent } from './add-item/add-item.component';
 import { ElementsService, PeriodicElement } from './elements.service';
 import { EditItemComponent } from './edit-item/edit-item.component';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-table',
@@ -42,12 +43,20 @@ export class TableComponent {
     this.serviceElement.removeItem(position)
   }
 
+  // Sottoscrizione d'appoggio per aprire e chiudere il flusso di dati
+  // senza distruggere permanentemente il behavior subject che contiene la fonte
+  sottoscrizione!: Subscription;
   ngOnInit() {
-    this.serviceElement.array.subscribe(array => this.dataSource = array);
+    this.sottoscrizione = this.serviceElement.array.subscribe(array => this.dataSource = array)
+    console.log('subscribed')
   }
+
   /*DA CONTROLLARE*/
-  // ngOnDestroy(): void {
-  //   this.serviceElement.array.unsubscribe()
-  // }
+  ngOnDestroy() {
+    this.sottoscrizione.unsubscribe()
+    console.log('unsubscribed')
+    //this.serviceElement.arrayObs
+  }
+
 }
 

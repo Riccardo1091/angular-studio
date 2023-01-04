@@ -1,6 +1,6 @@
 <div class="register-page">
     <h2>Registrati</h2>
-    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+    <form [formGroup]="registerForm" (ngSubmit)="$event.preventDefault()">
         <mat-stepper [linear]="true" orientation="vertical">
             <mat-step>
                 <ng-template matStepLabel>Inserisci email e password</ng-template>
@@ -91,7 +91,7 @@
                 <br>
                 <div class="flex">
                     <button mat-button matStepperPrevious>Indietro</button>
-                    <button mat-raised-button type="submit" [disabled]="!registerForm.valid">Registrati</button>
+                    <button mat-raised-button [disabled]="!registerForm.valid" (click)="onSubmit()">Registrati</button>
                 </div>
             </mat-step>
         </mat-stepper>

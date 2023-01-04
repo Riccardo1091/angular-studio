@@ -28,9 +28,11 @@ export class ElementsService {
 
   public array: BehaviorSubject<PeriodicElement[]> = new BehaviorSubject(ELEMENT_DATA);
   /*Da approfondire*/
-  //arrayObs: Observable<PeriodicElement[]> = this.array.asObservable();
+  arrayObs: Observable<PeriodicElement[]> = this.array.asObservable();
 
   constructor() { }
+
+  //get arrayGetter() { return this.array }
 
   addItem(valore: PeriodicElement) {
     this.array.next([...this.array.value, valore]);
@@ -38,7 +40,7 @@ export class ElementsService {
 
   editItem(oggettoDaAggiornare: PeriodicElement, oggettoAggiornato: PeriodicElement) {
     let oggettoDaAggiornareIndice = this.array.value.indexOf(this.array.value.find(oggetto => oggetto.position == oggettoDaAggiornare.position)!)
-    const updated = this.array.value.splice(oggettoDaAggiornareIndice, 1, oggettoAggiornato)
+    const _updated = this.array.value.splice(oggettoDaAggiornareIndice, 1, oggettoAggiornato)
     this.array.next([...this.array.value])
   }
 

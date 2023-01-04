@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CardsService } from '../cards.service';
-import { cardsUrl } from '../cards.service';
+//import { cardsUrl } from '../cards.service';
 
 @Component({
   selector: 'app-add-card',
@@ -23,10 +23,13 @@ export class AddCardComponent {
   }
 
   onSubmit() {
-    this.form.value.url = cardsUrl[Math.floor(Math.random() * cardsUrl.length)]
-    this.serviceCards.addCane(this.form.value)
-    console.log(this.form.value)
-    this.form.reset()
+    //this.form.value.url = cardsUrl[Math.floor(Math.random() * cardsUrl.length)]
+    this.serviceCards.fetchImgCane().subscribe((a: string) => {
+      this.form.value.url = `https://i.picsum.photos/id/${a}`
+      this.serviceCards.addCane(this.form.value)
+      console.log(this.form.value)
+      this.form.reset()
+    })
   }
 
 }

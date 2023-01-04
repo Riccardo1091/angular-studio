@@ -46,24 +46,30 @@ export class RegisterComponent implements OnInit {
     })
   }
   onSelectionRegioni(e: MatAutocompleteSelectedEvent) {
-    this.autoCompleteService.getProvince(e.option.value).subscribe((data: Prov[]) => {
+    this.autoCompleteService.getProvince(e.option.value, '').subscribe((data: Prov[]) => {
       // filtro province alla selezione della regione
       this.province = data
       this.registerForm.get('autocompleteProvince')!.valueChanges
         .pipe(startWith(''), debounceTime(300))
         .subscribe((val: string) => {
-          this.province = data.filter((a: Prov) => a.nome.toLowerCase().includes(val.toLowerCase()))
+          this.autoCompleteService.getProvince(e.option.value, val).subscribe((data: Prov[]) => {
+            this.province = data
+          })
+          //this.province = data.filter((a: Prov) => a.nome.toLowerCase().includes(val.toLowerCase()))
         })
     })
   }
   onSelectionProvince(e: MatAutocompleteSelectedEvent) {
-    this.autoCompleteService.getComuni(e.option.value).subscribe((data: any) => {
+    this.autoCompleteService.getComuni(e.option.value, '').subscribe((data: any) => {
       // filtro province alla selezione della regione
       this.comuni = data
       this.registerForm.get('autocompleteComuni')!.valueChanges
         .pipe(startWith(''), debounceTime(300))
         .subscribe((val: string) => {
-          this.comuni = data.filter((a: Prov) => a.nome.toLowerCase().includes(val.toLowerCase()))
+          this.autoCompleteService.getComuni(e.option.value, val).subscribe((data: any[]) => {
+            this.comuni = data
+          })
+          //this.comuni = data.filter((a: Prov) => a.nome.toLowerCase().includes(val.toLowerCase()))
         })
     })
   }
