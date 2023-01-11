@@ -25,3 +25,5 @@ aggiungere componente Stepper da material Stepper overview Lineare
 filtro da server delle regioni province comuni
 
 cards evolvere service per chiamata immagine su server randomica (json cani immagine)
+-----------
+trasformare backend da node a python

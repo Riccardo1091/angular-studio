@@ -27,12 +27,11 @@ export let ELEMENT_DATA: PeriodicElement[] = [
 export class ElementsService {
 
   public array: BehaviorSubject<PeriodicElement[]> = new BehaviorSubject(ELEMENT_DATA);
+
   /*Da approfondire*/
-  arrayObs: Observable<PeriodicElement[]> = this.array.asObservable();
+  //arrayObs: Observable<PeriodicElement[]> = this.array.asObservable();
 
   constructor() { }
-
-  //get arrayGetter() { return this.array }
 
   addItem(valore: PeriodicElement) {
     this.array.next([...this.array.value, valore]);

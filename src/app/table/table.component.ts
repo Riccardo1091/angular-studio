@@ -13,7 +13,7 @@ import { Subscription } from 'rxjs';
 export class TableComponent {
 
   displayedColumns: string[] = ['position', 'name', 'weight', 'symbol', 'actions'];
-  dataSource!: PeriodicElement[]
+
 
   constructor(public dialog: MatDialog, private serviceElement: ElementsService) { }
 
@@ -46,16 +46,16 @@ export class TableComponent {
   // Sottoscrizione d'appoggio per aprire e chiudere il flusso di dati
   // senza distruggere permanentemente il behavior subject che contiene la fonte
   sottoscrizione!: Subscription;
+  dataSource!: PeriodicElement[]
   ngOnInit() {
     this.sottoscrizione = this.serviceElement.array.subscribe(array => this.dataSource = array)
     console.log('subscribed')
   }
 
-  /*DA CONTROLLARE*/
+  /* unsubscribe sulla sottoscrizione, non direttamente sul behaviourSubject */
   ngOnDestroy() {
     this.sottoscrizione.unsubscribe()
     console.log('unsubscribed')
-    //this.serviceElement.arrayObs
   }
 
 }
