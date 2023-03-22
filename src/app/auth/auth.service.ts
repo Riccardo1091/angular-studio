@@ -7,7 +7,7 @@ import { Router } from '@angular/router';
 export class AuthService {
   constructor(private router: Router) { }
 
-  isLoggedIn: boolean = true
+  isLoggedIn: boolean = false
 
   register(email: string, password: string) {
     if (true) {
